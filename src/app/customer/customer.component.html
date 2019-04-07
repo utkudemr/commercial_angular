@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row mt-5">
+    <p *ngIf="loading"></p>
+    <div class="col-md-4">
+        <h3>Kayıt Ol</h3>
+        <br>
+        <form [formGroup]="registerform" (ngSubmit)="addUser()">
+            <div class="form-group">
+                <label>Ad</label>
+                
+                <input type="text" formControlName="name" class="form-control" placeholder="Adınızı girin" [ngClass]="{ 'is-invalid': submitted && d.name.errors && regcontrol }" />
+                <div *ngIf="submitted && d.name.errors" class="invalid-feedback">
+                    <div *ngIf="d.name.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Soyad</label>
+                <input type="text" formControlName="surname" class="form-control" placeholder="Soyadınızı girin" [ngClass]="{ 'is-invalid': submitted && d.surname.errors &&  regcontrol }" />
+                <div *ngIf="submitted && d.surname.errors" class="invalid-feedback">
+                    <div *ngIf="d.surname.errors.required">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="E-postanızı girin" [ngClass]="{ 'is-invalid': submitted && d.email.errors &&  regcontrol }" />
+                <div *ngIf="submitted && d.email.errors" class="invalid-feedback">
+                    <div *ngIf="d.email.errors.required">Email is required</div>
+                    <div *ngIf="d.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" class="form-control" placeholder="Şifrenizi Girin" [ngClass]="{ 'is-invalid': submitted && d.password.errors &&  regcontrol }" />
+                <div *ngIf="submitted && d.password.errors" class="invalid-feedback">
+                    <div *ngIf="d.password.errors.required">Password is required</div>
+                    <div *ngIf="d.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Kayıt Ol</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Kullandığım visual studio sdk sından dolayı servislerin response değerleri bazen gelmiyor.Bir kaç kez denemeniz gerekmektedir.
+                 
+                <b>(mail:demirutku@hotmail.com)
+                  (şifre:123456789)</b>
+              </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-4">
+        <h3>Giriş Yap</h3>
+        <br>
+        <form [formGroup]="loginform" (ngSubmit)="getUser()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" formControlName="emaill" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emaill.errors && logincontrol }" placeholder="E-mail girin" />
+                <div *ngIf="submitted && f.emaill.errors" class="invalid-feedback">
+                    <div *ngIf="f.emaill.errors.required">Email is required</div>
+                    <div *ngIf="f.emaill.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="passwordd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.passwordd.errors && logincontrol }" placeholder="Şifrenizi Giriniz.."/>
+                <div *ngIf="submitted && f.passwordd.errors" class="invalid-feedback">
+                    <div *ngIf="f.passwordd.errors.required">Password is required</div>
+                    <div *ngIf="f.passwordd.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Giriş Yap</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

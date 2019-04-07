@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-7">
+      <h3>Ürünler</h3>
+      <table class="table">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Count</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="products!==0">
+            <tr *ngFor="let prod of products">
+              <td>{{prod.id}}</td>
+              <td>{{prod.name}}</td>
+              <td>{{prod.description}}</td>
+              <td>{{prod.stock}}</td>
+              <td>{{prod.price}}</td>
+              <td>
+                  <span class="badge badge-primary" (click)=" getProduct(prod)">Ekle</span>
+               </td>
+
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+
+
+    </div>
+    <div class="col-md-4">
+      <h3>Sepetim
+        <button type="button" class="btn btn-primary"  routerLink="/card/{{userid}}">
+          Sepet <span class="badge badge-light">{{count}}</span>
+          <span class="sr-only">unread messages</span>
+        </button>
+      </h3>
+      <form [formGroup]="basketForm" (ngSubmit)="addbasket()">
+      <table class="table">
+        <thead>
+          <th>Ürün</th>
+          <th>Sayısı</th>
+          <th>Çıkar</th>
+          <th></th>
+          <th><button type="submit" class="btn btn-primary" (click)="clearBasket(ref)">Temizle</button></th>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="currentCard!==0">
+            <tr *ngFor="let card of currentCard">
+              <td>{{card?.name}}</td>
+              <td>{{card?.count}}</td>
+              <td><input type="submit" value="çıkar" (click)="removeselectedBasket(card)"></td>
+              <td><input type="submit" value="azalt" (click)="reduceBasket(card,1)"></td>
+            </tr>
+            
+            <tr>
+              <td>Shipping Address</td>
+              <td colspan="4">
+                  <div class="form-group">
+                      <textarea  cols="30" rows="4" formControlName="shippin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.shippin.errors }" placeholder="Teslimat Adresini Giriniz..." ></textarea>
+                      <div *ngIf="submitted && f.shippin.errors" class="invalid-feedback">
+                          <div *ngIf="f.shippin.errors.required">Teslimat adresi gerekli</div>
+                          <div *ngIf="f.shippin.errors.textarea">Email must be a valid email address</div>
+                      </div>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+                <td>Billing Address</td>
+                <td colspan="4">
+                    <textarea  cols="30" rows="4" formControlName="billin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.billin.errors }" placeholder="Fatura Adresini Giriniz..." ></textarea>
+                    <div *ngIf="submitted && f.billin.errors" class="invalid-feedback">
+                        <div *ngIf="f.billin.errors.required">Fatura adresi gerekli</div>
+                        <div *ngIf="f.billin.errors.textarea">Email must be a valid email address</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+              <td colspan="2">Fiyat : ₺{{totall}}</td>
+
+              <td></td>
+              <td><button class="btn btn-primary">Kaydet</button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </form>
+    </div>
+  </div>
+</div>

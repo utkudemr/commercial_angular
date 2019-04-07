@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>Basket List</h3>
+  <br>
+  <table class="table">
+    <thead>
+      <th scope="col">Tarih</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total</th>
+      <th scope="col">Billing Address</th>
+      <th scope="col">Shipping Address</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <p *ngIf="cards.length===0">Kayıtlı Sipariş Yok</p>
+      <tr  *ngFor="let cat of cards">
+        <td>{{cat.date}}</td>
+        <td>{{cat.status}}</td>
+        <td>{{cat.total}}</td>
+        <td>{{cat.billingAddress}}</td>
+        <td>{{cat.shippingAddress}}</td>
+        <td><input type="submit" value="delete" (click)="remove(cat.basketId)"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
