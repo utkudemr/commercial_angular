@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { CardComponent } from './card/card.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MessageComponent } from './message/message.component';
 
 
 const routes:Routes=
@@ -23,7 +24,8 @@ const routes:Routes=
       CustomerComponent,
       CategoryComponent,
       ProductComponent,
-      CardComponent
+      CardComponent,
+      MessageComponent
    ],
    imports: [
       BrowserModule,
